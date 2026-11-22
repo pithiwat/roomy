@@ -73,3 +73,17 @@
 .rm-prog{flex:1;height:5px;border-radius:3px;background:rgba(255,255,255,.25);overflow:hidden;cursor:pointer}
 .rm-prog i{display:block;height:100%;background:#6cd3b3}
 .rm.record .rm-ctrl{display:none}
+/* scene 6: memory */
+.rm-mem{display:grid;grid-template-columns:120px 1fr;gap:26px;align-items:center;width:760px}
+.rm-memr{display:grid;gap:12px}
+.rm-memt b{font-size:24px;font-variant-numeric:tabular-nums}
+.rm-memt small{color:#5e6672;font-size:15px}
+.rm-apps{display:grid;gap:8px}
+.rm-app{display:grid;grid-template-columns:1fr auto;gap:4px 12px;font-size:15px}
+.rm-app b{font-variant-numeric:tabular-nums}
+.rm-app i{grid-column:1/-1;height:6px;border-radius:3px;background:#0e7c66;transform-origin:left;display:block}
+.rm-memb{display:flex;gap:16px;align-items:center}
+.rm-btn{display:inline-block;background:#0e7c66;color:#fff;font-weight:600;border-radius:9px;padding:9px 18px;font-size:15px}
+.rm-btn.done{background:#1a8f5c}
+.rm-ready{display:inline-flex;gap:8px;align-items:center;background:#efebfd;color:#6a4fd6;border-radius:20px;padding:6px 14px;font-size:15px;opacity:0}
+.rm-ready i{width:9px;height:9px;border-radius:50%;background:#6a4fd6}

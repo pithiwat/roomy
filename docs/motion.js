@@ -6,11 +6,12 @@
  * Numbers in the demo are illustrative and consistent with each other (a typical full C: drive).
  */
 (function (root) {
-  const DURATION = 24;
+  const DURATION = 30;
   const T = {
     th: {
-      nav: ['ไดรฟ์ทั้งหมด', 'แผนที่พื้นที่', 'ล้างพื้นที่', 'ย้ายไปไดรฟ์อื่น', 'ดูแลอัตโนมัติ'],
-      cap: ['ไดรฟ์ C เต็มอีกแล้ว?', 'สแกนล้านไฟล์ได้ในไม่กี่นาที', 'เห็นทันทีว่าอะไรกินพื้นที่', 'ล้างอย่างปลอดภัย ถามก่อนลบทุกครั้ง', 'ย้ายโฟลเดอร์ใหญ่ไปไดรฟ์อื่น โปรแกรมยังหาเจอ', ''],
+      nav: ['ไดรฟ์ทั้งหมด', 'แผนที่พื้นที่', 'ล้างพื้นที่', 'ย้ายไปไดรฟ์อื่น', 'หน่วยความจำและแอป', 'โหมดเกม'],
+      cap: ['ไดรฟ์ C เต็มอีกแล้ว?', 'สแกนล้านไฟล์ได้ในไม่กี่นาที', 'เห็นทันทีว่าอะไรกินพื้นที่', 'ล้างอย่างปลอดภัย ถามก่อนลบทุกครั้ง', 'ย้ายโฟลเดอร์ใหญ่ไปไดรฟ์อื่น โปรแกรมยังหาเจอ', 'เครื่องอืด? คืนหน่วยความจำในคลิกเดียว พร้อมเล่นเกม', ''],
+      memH: 'หน่วยความจำและแอป', memSub: 'คืนหน่วยความจำโดยไม่ปิดแอปใด ๆ', memBtn: 'คืนหน่วยความจำ', memUsed: 'ใช้อยู่', ready: 'พร้อมเล่นเกม', apps: [['Google Chrome · 38 แท็บ', 2.9], ['Discord', 0.6], ['Steam', 0.4]],
       drive: 'ไดรฟ์ C', free: 'เหลือ {0} GB จาก 476 GB', warn: 'พื้นที่ใกล้เต็ม', scanH: 'กำลังสแกน C:', files: 'ไฟล์', found: 'ขนาดที่พบ', time: 'เวลา',
       mapH: 'แผนที่พื้นที่', mapSub: 'กล่องยิ่งใหญ่ ยิ่งกินพื้นที่มาก', cleanH: 'ล้างพื้นที่', cleanSub: 'ลบเฉพาะแคชที่สร้างใหม่ได้เอง', freed: 'ได้คืน',
       rows: [['แคช Shader ของ NVIDIA', 'เกมสร้างใหม่เองตอนเปิด'], ['ไฟล์ดาวน์โหลดของ Windows Update', 'อัปเดตที่ติดตั้งแล้ว'], ['ข้อมูล Docker ที่ไม่ได้ใช้', 'container ที่หยุดแล้ว, build cache'], ['ไฟล์ชั่วคราว (Temp)', 'เก่ากว่า 1 วัน']],
@@ -19,8 +20,9 @@
       boxes: ['Docker', 'เกม', 'แคชการ์ดจอ', 'Windows', 'วิดีโอ', 'โปรแกรม', 'ดาวน์โหลด', 'อื่น ๆ'],
     },
     en: {
-      nav: ['All drives', 'Space map', 'Free up space', 'Move to another drive', 'Automatic maintenance'],
-      cap: ['Drive C full again?', 'Scan a million files in minutes', 'See what takes up space, instantly', 'Clean up safely. Always asks first', 'Move big folders to another drive. Apps still find them', ''],
+      nav: ['All drives', 'Space map', 'Free up space', 'Move to another drive', 'Memory & apps', 'Game mode'],
+      cap: ['Drive C full again?', 'Scan a million files in minutes', 'See what takes up space, instantly', 'Clean up safely. Always asks first', 'Move big folders to another drive. Apps still find them', 'PC feels slow? Free up memory in one click, ready to play', ''],
+      memH: 'Memory & apps', memSub: 'Frees memory without closing any app', memBtn: 'Free up memory', memUsed: 'in use', ready: 'Ready to play', apps: [['Google Chrome · 38 tabs', 2.9], ['Discord', 0.6], ['Steam', 0.4]],
       drive: 'Drive C', free: '{0} GB free of 476 GB', warn: 'Almost full', scanH: 'Scanning C:', files: 'Files', found: 'Found', time: 'Time',
       mapH: 'Space map', mapSub: 'The bigger the box, the more space it takes', cleanH: 'Free up space', cleanSub: 'Only caches that get recreated', freed: 'Freed',
       rows: [['NVIDIA shader cache', 'Games rebuild it on launch'], ['Windows Update downloads', 'Updates already installed'], ['Unused Docker data', 'Stopped containers, build cache'], ['Temporary files', 'Older than 1 day']],
@@ -30,7 +32,7 @@
     },
   };
   // scene windows [start, end] in seconds
-  const S = [[0, 4], [4, 8], [8, 12], [12, 16.5], [16.5, 20], [20, 24]];
+  const S = [[0, 4], [4, 8], [8, 12], [12, 16.5], [16.5, 20], [20, 25], [25, 30]];
   const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
   const ease = (p) => (p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2);
   const back = (p) => { const c = 1.6; return 1 + (c + 1) * Math.pow(p - 1, 3) + c * Math.pow(p - 1, 2); };
@@ -61,6 +63,10 @@
           <section class="rm-scene" data-s="4"><h2 class="rm-h" data-k="moveH"></h2><p class="rm-sub" data-k="moveSub"></p>
             <div class="rm-move"><div class="rm-drivecol" style="left:0"><h4>C:</h4></div><div class="rm-drivecol" style="left:440px"><h4>D:</h4></div>
             <div class="rm-link"></div><div class="rm-folder mf"><b data-k="folder"></b><small>9.5 GB</small></div><div class="rm-junction" data-k="junction"></div></div></section>
+          <section class="rm-scene" data-s="5"><h2 class="rm-h" data-k="memH"></h2><p class="rm-sub" data-k="memSub"></p>
+            <div class="rm-card rm-mem"><div class="rm-ring"><svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="52"/><circle class="mfg" cx="60" cy="60" r="52" stroke-linecap="round"/></svg><span class="mpct"></span></div>
+              <div class="rm-memr"><div class="rm-memt"><b class="mused"></b> <small data-k="memUsed"></small></div><div class="rm-apps"></div>
+              <div class="rm-memb"><span class="rm-btn mbtn" data-k="memBtn"></span><span class="rm-ready"><i></i><b data-k="ready"></b></span></div></div></div></section>
         </main></div>
       <div class="rm-end"><div><div class="logo">${LOGO}</div><h2>Roomy</h2><p data-k="endP"></p><span class="gain"></span></div></div>
       <div class="rm-cap"></div></div>
@@ -79,6 +85,7 @@
       $('.rm-navs').innerHTML = L.nav.map((n, i) => `<div class="rm-nav" data-i="${i}"><i></i>${n}</div>`).join('');
       $$('[data-k]').forEach((e) => { e.textContent = L[e.dataset.k]; });
       $$('.rm-box').forEach((b, i) => { b.querySelector('b').textContent = L.boxes[i]; b.querySelector('span').textContent = BOXES[i][5] + ' GB'; });
+      $('.rm-apps').innerHTML = L.apps.map(([n, gb]) => `<div class="rm-app"><span>${n}</span><b>${gb.toFixed(1)} GB</b><i style="width:${(gb / 2.9) * 100}%"></i></div>`).join('');
       $$('.rm-row').forEach((r, i) => { r.querySelector('.n').textContent = L.rows[i][0]; r.querySelector('small').textContent = L.rows[i][1]; r.querySelector('.s').textContent = CLEAN[i] + ' GB'; });
       render(cur);
     }
@@ -98,9 +105,9 @@
       cur = t = clamp(t, 0, DURATION);
       const L = T[lang];
       // window + nav highlight
-      const navOn = t < 8 ? 0 : t < 12 ? 1 : t < 16.5 ? 2 : 3;
+      const navOn = t < 8 ? 0 : t < 12 ? 1 : t < 16.5 ? 2 : t < 20 ? 3 : t < 23.4 ? 4 : 5;
       $$('.rm-nav').forEach((n, i) => n.classList.toggle('on', i === navOn));
-      const winOut = ease(seg(t, 20, 21));
+      const winOut = ease(seg(t, 25, 26));
       $('.rm-win').style.opacity = 1 - winOut;
       $('.rm-win').style.transform = `scale(${1 - winOut * 0.06})`;
       // S1 drive filling up
@@ -151,17 +158,29 @@
       const lp = seg(t, 18.6, 19.2);
       Object.assign($('.rm-link').style, { left: '150px', top: '190px', width: (lp * 440) + 'px', opacity: lp > 0 ? 1 : 0 });
       Object.assign($('.rm-junction').style, { left: '20px', top: '210px', opacity: seg(t, 18.9, 19.3) });
-      // S6 end card
-      const eo = seg(t, 20.6, 21.4);
+      // S6 memory: 92% in use, "Free up memory" pressed, drops to 61%, then "Ready to play"
+      show(5, t);
+      const press = seg(t, 21.6, 21.9);
+      const mp2 = ease(seg(t, 21.9, 23.1));
+      const mpc = Math.round(92 - mp2 * 31);
+      const mfg = $('.mfg'); mfg.setAttribute('stroke-dasharray', `${C * mpc / 100} ${C}`); mfg.setAttribute('stroke', mpc > 85 ? '#cf3f35' : mpc > 75 ? '#b87410' : '#0e7c66');
+      $('.mpct').textContent = mpc + '%';
+      $('.mused').textContent = (16 * mpc / 100).toFixed(1) + ' / 16 GB';
+      $('.mbtn').style.transform = `scale(${1 - Math.sin(press * Math.PI) * 0.08})`;
+      $('.mbtn').classList.toggle('done', t > 23.1);
+      $$('.rm-app').forEach((a, i) => { a.style.opacity = clamp(seg(t, 20.5 + i * 0.15, 20.9 + i * 0.15)); a.querySelector('i').style.transform = `scaleX(${1 - mp2 * [0.45, 0.35, 0.3][i]})`; });
+      const rd = seg(t, 23.4, 23.8); $('.rm-ready').style.opacity = rd; $('.rm-ready').style.transform = `scale(${clamp(back(rd), 0, 1.2)})`;
+      // S7 end card
+      const eo = seg(t, 25.6, 26.4);
       const end = $('.rm-end'); end.style.opacity = eo; end.style.transform = `translateY(${(1 - ease(eo)) * 20}px)`;
-      const gain = (14.2 + 3.9 + 4.1 + 1.4 + 9.5) * ease(seg(t, 21.2, 22.6));
+      const gain = (14.2 + 3.9 + 4.1 + 1.4 + 9.5) * ease(seg(t, 26.2, 27.6));
       $('.gain').textContent = fill(L.gain, gain.toFixed(1));
-      $('.gain').style.opacity = seg(t, 21.2, 21.6);
+      $('.gain').style.opacity = seg(t, 26.2, 26.6);
       // caption
       const si = S.findIndex(([a, b]) => t >= a && t < b);
       const cap = $('.rm-cap');
       const [a, b] = S[si < 0 ? S.length - 1 : si];
-      cap.textContent = L.cap[si < 0 ? 5 : si] || '';
+      cap.textContent = L.cap[si < 0 ? 6 : si] || '';
       cap.style.opacity = Math.min(seg(t, a + 0.2, a + 0.6), 1 - seg(t, b - 0.4, b));
       // progress bar
       $('.rm-prog i').style.width = (t / DURATION * 100) + '%';
@@ -185,7 +204,7 @@
     setLang(lang);
     const reduced = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (opts.record) render(0);
-    else if (reduced) { render(22.8); pause(); }               // still image of the end result
+    else if (reduced) { render(27.8); pause(); }               // still image of the end result
     else if (opts.autoplay !== false) play(); else { render(0); pause(); }
     // pause when scrolled out of view (saves battery)
     if (!opts.record && typeof IntersectionObserver !== 'undefined') new IntersectionObserver(([e]) => { if (!e.isIntersecting && playing) { pause(); el.dataset.auto = '1'; } else if (e.isIntersecting && el.dataset.auto) { delete el.dataset.auto; play(); } }, { threshold: 0.2 }).observe(el);

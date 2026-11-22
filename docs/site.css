@@ -83,7 +83,10 @@ p{margin:0}
 @media (max-width:760px){.steps{grid-template-columns:1fr}}
 
 /* pricing */
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:stretch}
+@media (max-width:1180px){.plans{grid-template-columns:1fr 1fr}}
+.plan .pnote{margin:-8px 0 0;font-size:13.5px;color:var(--muted)}
+.plan{padding:24px!important}
 @media (max-width:900px){.plans{grid-template-columns:1fr}}
 .plan{position:relative;border:1px solid var(--line);border-radius:20px;padding:28px;display:grid;gap:16px;align-content:start;background:var(--bg)}
 .plan.best{border:2px solid var(--pro);box-shadow:0 20px 50px color-mix(in srgb,var(--pro) 18%,transparent)}

@@ -3,6 +3,7 @@
 // Roomy landing page: English is in the HTML (main language); Thai below (same data-i18n keys). Prices/links come from config.js.
 (() => {
   const C = window.ROOMY_SITE;
+  const PAD = C.paddle[C.paddle.environment] || C.paddle.sandbox;     // the active Paddle set (sandbox or production)
   const TH_TEXT = {
     "foot.terms": "ข้อกำหนด",
     "foot.privacy": "ความเป็นส่วนตัว",
@@ -13,16 +14,40 @@
     "nav.faq": "คำถาม",
     "cta.download": "ดาวน์โหลดฟรี",
     "hero.eyebrow": "สำหรับ Windows 10 และ 11",
-    "hero.title": "ไดรฟ์ C เต็ม? คืนพื้นที่ได้ในไม่กี่คลิก",
-    "hero.lead": "Roomy สแกนทั้งไดรฟ์ แสดงให้เห็นว่าอะไรกินพื้นที่ แล้วช่วยล้าง ย้าย และย่อขนาดอย่างปลอดภัย ทุกอย่างที่จะลบ ถามก่อนเสมอ",
+    "hero.title": "เครื่องเร็วขึ้น ที่ว่างเพิ่ม ในไม่กี่คลิก",
+    "hero.lead": "Roomy คืนหน่วยความจำ เตรียมเครื่องเล่นเกม พักโปรแกรมเบื้องหลัง อัปเดตโปรแกรม และล้างไฟล์ขยะหลายกิกะไบต์อย่างปลอดภัย ทุกอย่างที่จะเปลี่ยน ถามก่อนเสมอ",
+    "n1.t": "คืนหน่วยความจำ",
+    "n1.d": "ดูว่าแอปและแท็บเบราว์เซอร์ไหนใช้ RAM แล้วคืนหน่วยความจำในคลิกเดียว โดยไม่ปิดอะไร Pro คืนให้เองเมื่อ RAM สูงนาน",
+    "n2.t": "โหมดเกม",
+    "n2.d": "แตะเดียวคืนหน่วยความจำ เปลี่ยนเป็นพลังงานเต็มที่ และปิดแอปที่คุณเลือก หาเกมจาก Steam, Epic, Riot, Xbox และตรวจ ping",
+    "n3.t": "เพิ่มประสิทธิภาพ",
+    "n3.d": "พักโปรแกรมและบริการเบื้องหลังที่ไม่ค่อยได้ใช้ และปิดโปรแกรมที่เปิดเองตอนเริ่มเครื่อง ปลุกกลับได้ทุกเมื่อ",
+    "n4.t": "อัปเดตโปรแกรม",
+    "n4.d": "หาโปรแกรมที่ตกรุ่นแล้วอัปเดตแบบเงียบจากผู้พัฒนาแต่ละราย ผ่านตัวจัดการแพ็กเกจที่มากับ Windows",
+    "n5.t": "ตรวจสุขภาพและข้อมูลเชิงลึก",
+    "n5.d": "คะแนนสุขภาพเครื่องพร้อมคำแนะนำ ประวัติหน่วยความจำและพื้นที่ และการตรวจเบื้องหลังที่เตือนเมื่อขยะเยอะ โดยไม่มีโปรแกรมค้าง",
+    "n6.t": "ล้างแบบเลือกเองและความเป็นส่วนตัว",
+    "n6.d": "เลือกได้เองว่าจะล้างอะไร: ประวัติเว็บ คุกกี้ แท็บเก่า ไฟล์ล่าสุด คลิปบอร์ด แคช DNS และ log ของ Windows",
+    "p.monthly": "Pro รายเดือน",
+    "p.mnote": "ทดลองฟรี 7 วันในโปรแกรมก่อน · ยกเลิกได้ทุกเมื่อ",
+    "p.save": "ประหยัด 58%",
+    "p.y1": "ทุกอย่างใน Pro รายเดือน",
+    "p.y2": "จ่ายปีละครั้ง ยกเลิกได้ทุกเมื่อ",
+    "p.y3": "ใช้ในเครื่องคุณ และย้ายไปเครื่องใหม่ได้",
+    "p.lnote": "ไม่ต้องสมัครสมาชิก",
+    "p.f0": "หน้าหลัก ตรวจสุขภาพเครื่อง โหมดเกม",
+    "q7": "ยกเลิกรายเดือนหรือรายปีได้ไหม",
+    "a7": "ได้ทุกเมื่อ จากลิงก์ในอีเมลใบเสร็จ Pro ใช้ได้จนครบรอบที่จ่ายไว้ แล้ว Roomy จะกลับเป็นเวอร์ชันฟรี ไม่มีอะไรเสีย โฟลเดอร์ที่ย้ายไว้ยังใช้งานได้",
+    "q8": "คืนหน่วยความจำหรือพักโปรแกรม จะทำให้อะไรเสียไหม",
+    "a8": "ไม่ การคืนหน่วยความจำไม่ได้ปิดแอปใด ๆ Windows จะคืนให้แต่ละแอปเท่าที่ต้องใช้ ส่วนการพักแค่ไม่ให้โปรแกรมเปิดเองเท่านั้น ไม่ได้ถอนการติดตั้ง และปลุกกลับได้ทุกเมื่อ",
     "cta.pricing": "ดูราคา Pro",
     "hero.trial": "ทดลอง Pro ครบทุกฟีเจอร์ฟรี 7 วัน · ไม่ต้องใส่บัตร",
     "trust.ask": "ถามก่อนลบทุกครั้ง",
     "trust.files": "ไม่แตะไฟล์งาน รูป และเอกสาร",
     "trust.bg": "ไม่มีโปรแกรมค้างในเบื้องหลัง",
     "trust.privacy": "ไม่เก็บหรือส่งข้อมูลไฟล์ของคุณ",
-    "feat.title": "ทุกอย่างที่ต้องใช้ เพื่อให้ไดรฟ์กลับมาโล่ง",
-    "feat.lead": "ไม่ต้องเดาว่าอะไรลบได้ Roomy รู้ว่าแคชไหนสร้างใหม่ได้เอง และบอกทุกครั้งว่าจะได้พื้นที่คืนเท่าไร",
+    "feat.title": "ครบทุกอย่างให้เครื่องเร็วและมีที่ว่าง",
+    "feat.lead": "ความเร็ว พื้นที่ และความปลอดภัย ในแอปเดียวที่ใช้ง่าย Roomy บอกก่อนเสมอว่าแต่ละอย่างจะทำอะไร และไม่มีโปรแกรมค้างในเบื้องหลัง",
     "f1.t": "แผนที่พื้นที่",
     "f1.d": "เห็นทั้งไดรฟ์เป็นกล่อง กล่องยิ่งใหญ่ยิ่งกินที่ คลิกเจาะลึกลงไปได้ทันที สแกนล้านไฟล์ในไม่กี่นาที",
     "f2.t": "ล้างแคชอย่างปลอดภัย",
@@ -45,17 +70,17 @@
     "price.title": "เริ่มฟรี อัปเกรดเมื่อพร้อม",
     "price.lead": "เวอร์ชันฟรีบอกได้ว่า Pro จะคืนพื้นที่ในเครื่องคุณได้อีกเท่าไร วัดจากเครื่องจริง ก่อนตัดสินใจซื้อ",
     "p.free": "ฟรี",
-    "p.f1": "สแกนและแผนที่พื้นที่ทุกไดรฟ์",
-    "p.f2": "ล้างแคช Windows เบราว์เซอร์ และการ์ดจอ",
-    "p.f3": "ไฟล์ใหญ่ ประเภทไฟล์ และโปรแกรมที่ติดตั้ง",
-    "p.f4": "ไฟล์ซ้ำ/ไฟล์เก่า (5 รายการแรก)",
+    "p.f1": "คืนหน่วยความจำวันละ 3 ครั้ง จัดการโปรแกรมเริ่มต้น",
+    "p.f2": "ล้างแบบเลือกเอง: Windows เบราว์เซอร์ ความเป็นส่วนตัว",
+    "p.f3": "แผนที่พื้นที่ ไฟล์ใหญ่ โปรแกรมที่ติดตั้ง",
+    "p.f4": "อัปเดตโปรแกรม (ทีละโปรแกรม)",
     "p.yearly": "Pro รายปี",
     "p.p0": "ทุกอย่างในเวอร์ชันฟรี",
-    "p.p1": "ล้างแคชแอป เกม และเครื่องมือนักพัฒนา",
-    "p.p2": "ย้ายโฟลเดอร์ไปไดรฟ์อื่น",
-    "p.p3": "ย่อดิสก์ Docker/WSL และบีบอัดโฟลเดอร์",
-    "p.p4": "ดูแลอัตโนมัติ และอัปเดตไดรเวอร์",
-    "p.p5": "ไม่ต่ออายุอัตโนมัติ ไม่มีการตัดเงินซ้ำ",
+    "p.p1": "คืนหน่วยความจำไม่จำกัด และคืนเองอัตโนมัติ",
+    "p.p2": "เล่นเกมแบบเร่งเครื่อง พักโปรแกรมได้ไม่จำกัด",
+    "p.p3": "ล้างแคชแอป เกม และเครื่องมือนักพัฒนา",
+    "p.p4": "ย้ายโฟลเดอร์ ย่อดิสก์ Docker/WSL",
+    "p.p5": "ล้างตามรอบเวลา อัปเดตทั้งหมด ประวัติ 7 วัน",
     "cta.buy": "ซื้อ Pro",
     "p.best": "คุ้มที่สุด",
     "p.lifetime": "Pro ตลอดชีพ",
@@ -63,7 +88,7 @@
     "p.l1": "ทุกฟีเจอร์ Pro ใช้ได้ตลอดไป",
     "p.l2": "อัปเดตเวอร์ชันใหม่ฟรี",
     "p.l3": "ย้ายไปเครื่องใหม่ได้",
-    "price.note": "ทุกแผนทดลอง Pro ฟรี 7 วันได้ในโปรแกรมก่อนซื้อ",
+    "price.note": "ทดลองทุกฟีเจอร์ Pro ฟรี 7 วันในโปรแกรม ไม่ต้องใส่บัตร รายเดือนและรายปีต่ออายุอัตโนมัติจนกว่าจะยกเลิก",
     "faq.title": "คำถามที่พบบ่อย",
     "q1": "ปลอดภัยไหม จะลบไฟล์สำคัญหรือเปล่า",
     "a1": "Roomy ลบเฉพาะแคชและไฟล์ชั่วคราวที่ Windows และโปรแกรมสร้างใหม่ได้เอง ข้ามไฟล์ที่เปิดใช้อยู่ ไม่แตะเอกสาร รูป หรือไฟล์งาน และถามยืนยันก่อนทุกครั้ง ไฟล์ที่คุณเลือกลบเองจะไปที่ถังขยะ กู้คืนได้",
@@ -78,7 +103,7 @@
     "q6": "ต้องใช้ Windows รุ่นไหน",
     "a6": "Windows 10 และ 11 แบบ 64 บิต ติดตั้งได้ทั้งสำหรับตัวเองหรือทุกคนในเครื่อง",
     "final.title": "ให้ไดรฟ์ของคุณกลับมามีที่ว่าง",
-    "final.note": "Windows 10/11 · ฟรี · ทดลอง Pro 7 วัน",
+    "final.note": "Windows 10/11 · ฟรี · ทดลอง Pro 7 วัน · ไทยและอังกฤษ",
     "foot.releases": "ประวัติเวอร์ชัน",
   };
   // strings used only by this script (not in the HTML)
@@ -94,7 +119,7 @@
       const s = document.createElement('script'); s.src = 'https://cdn.paddle.com/paddle/v2/paddle.js';
       s.onload = () => {
         if (C.paddle.environment !== 'production') window.Paddle.Environment.set('sandbox');
-        window.Paddle.Initialize({ token: C.paddle.clientToken, eventCallback: (ev) => {
+        window.Paddle.Initialize({ token: PAD.clientToken, eventCallback: (ev) => {
           if (ev.name === 'checkout.completed' && ev.data && ev.data.transaction_id) location.href = `${C.shopUrl.replace(/\/$/, '')}/thanks?txn=${ev.data.transaction_id}&lang=${lang}`;
         } });
         ok(window.Paddle);
@@ -105,11 +130,11 @@
   }
   async function paddleCheckout(plan) {
     const P = await loadPaddle();
-    P.Checkout.open({ items: [{ priceId: C.paddle.prices[plan], quantity: 1 }], customData: { plan, lang }, settings: { locale: lang, displayMode: 'overlay', theme: 'light' } });
+    P.Checkout.open({ items: [{ priceId: PAD.prices[plan], quantity: 1 }], customData: { plan, lang }, settings: { locale: lang, displayMode: 'overlay', theme: 'light' } });
   }
   const META = {
-    th: { title: 'Roomy — คืนพื้นที่ให้ Windows อย่างปลอดภัย' },
-    en: { title: 'Roomy — Free up space on Windows, safely' },
+    th: { title: 'Roomy — ให้ Windows เร็วและมีที่ว่าง' },
+    en: { title: 'Roomy — Keep your Windows PC fast and roomy' },
   };
   // English is the main language; Thai only when the visitor picks it (remembered)
   let lang = 'en';
@@ -127,9 +152,9 @@
     document.querySelectorAll('.lang button').forEach((b) => b.classList.toggle('on', b.dataset.lang === lang));
     // buy buttons: Stripe -> the Worker's /buy; Paddle -> Paddle.js overlay here; nothing set up -> "coming soon"
     const shop = C.shopUrl && C.shopUrl.replace(/\/$/, '');
-    const paddleReady = C.payment === 'paddle' && C.paddle.clientToken && shop;
+    const paddleReady = C.payment === 'paddle' && PAD.clientToken && shop;
     document.querySelectorAll('.buy').forEach((b) => {
-      if (paddleReady && C.paddle.prices[b.dataset.plan]) { b.href = '#pricing'; b.onclick = (e) => { e.preventDefault(); paddleCheckout(b.dataset.plan); }; b.textContent = text('cta.buy', b); b.removeAttribute('aria-disabled'); }
+      if (paddleReady && PAD.prices[b.dataset.plan]) { b.href = '#pricing'; b.onclick = (e) => { e.preventDefault(); paddleCheckout(b.dataset.plan); }; b.textContent = text('cta.buy', b); b.removeAttribute('aria-disabled'); }
       else if (C.payment !== 'paddle' && shop) { b.href = `${shop}/buy?plan=${b.dataset.plan}&lang=${lang}`; b.onclick = null; b.textContent = text('cta.buy', b); b.removeAttribute('aria-disabled'); }
       else { b.removeAttribute('href'); b.onclick = null; b.textContent = tr('cta.soon'); b.setAttribute('aria-disabled', 'true'); }
     });
