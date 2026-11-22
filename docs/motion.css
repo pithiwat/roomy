@@ -1,0 +1,75 @@
+/* Roomy motion intro — a 1280×720 stage scaled to its container. Every frame is drawn by motion.js render(t). */
+.rm{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:18px;background:#0f1a17;container-type:inline-size;user-select:none}
+.rm-stage{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:0 0;font-family:"Noto Sans Thai","Inter","Segoe UI",system-ui,sans-serif;color:#1b1f24}
+.rm-bg{position:absolute;inset:0;background:radial-gradient(1200px 600px at 80% -10%,#1f5a4a 0%,transparent 60%),radial-gradient(900px 500px at -10% 110%,#2a2346 0%,transparent 55%),#0f1a17}
+.rm-win{position:absolute;left:120px;top:70px;width:1040px;height:520px;background:#f5f6f8;border-radius:16px;box-shadow:0 40px 90px rgba(0,0,0,.45);overflow:hidden;display:grid;grid-template-columns:230px 1fr}
+.rm-side{background:#fff;border-right:1px solid #e3e6eb;padding:18px 14px;display:grid;align-content:start;gap:6px}
+.rm-brand{display:flex;gap:10px;align-items:center;margin-bottom:14px}
+.rm-brand b{font-size:19px;font-weight:700;letter-spacing:-.01em}
+.rm-nav{height:30px;border-radius:8px;display:flex;align-items:center;padding:0 10px;font-size:13.5px;color:#5e6672;gap:8px;white-space:nowrap;overflow:hidden}
+.rm-nav i{flex:none}
+.rm-nav i{width:14px;height:14px;border-radius:4px;background:#e3e6eb;display:block}
+.rm-nav.on{background:#e3f4ee;color:#1b1f24;font-weight:600}
+.rm-nav.on i{background:#0e7c66}
+.rm-main{position:relative;padding:26px 30px}
+.rm-scene{position:absolute;inset:26px 30px;opacity:0}
+.rm-h{font-size:24px;font-weight:700;margin:0 0 4px;letter-spacing:-.01em}
+.rm-sub{font-size:14px;color:#5e6672;margin:0 0 18px}
+.rm-card{background:#fff;border:1px solid #e3e6eb;border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(16,24,40,.06)}
+/* S1 drive */
+.rm-drive{display:grid;grid-template-columns:120px 1fr;gap:22px;align-items:center;width:520px}
+.rm-ring{position:relative;width:120px;height:120px}
+.rm-ring svg{width:120px;height:120px;transform:rotate(-90deg)}
+.rm-ring circle{fill:none;stroke-width:12}
+.rm-ring .bg{stroke:#f0f2f5}
+.rm-ring span{position:absolute;inset:0;display:grid;place-items:center;font-size:26px;font-weight:700;font-variant-numeric:tabular-nums}
+.rm-drive h3{margin:0 0 6px;font-size:22px}
+.rm-drive p{margin:0;color:#5e6672;font-size:15px}
+.rm-warn{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#cf3f35;background:#fdecea;border-radius:8px;padding:3px 10px}
+/* S2 scan */
+.rm-scan{width:600px;display:grid;gap:14px}
+.rm-stats{display:flex;gap:40px}
+.rm-stats b{display:block;font-size:30px;font-variant-numeric:tabular-nums}
+.rm-stats small{color:#5e6672;font-size:13px}
+.rm-bar{height:8px;border-radius:4px;background:#f0f2f5;overflow:hidden}
+.rm-bar i{display:block;height:100%;background:#0e7c66;border-radius:4px}
+.rm-path{font-family:Consolas,monospace;font-size:12.5px;color:#8a929d;white-space:nowrap;overflow:hidden}
+/* S3 treemap */
+.rm-tm{position:relative;width:770px;height:360px}
+.rm-box{position:absolute;border-radius:6px;color:#fff;padding:6px 9px;font-size:13px;line-height:1.3;overflow:hidden;transform-origin:50% 50%}
+.rm-box b{display:block;font-weight:600;white-space:nowrap}
+.rm-box.hot{outline:3px solid #fff;box-shadow:0 0 0 6px rgba(255,255,255,.25)}
+/* S4 cleanup */
+.rm-clean{width:770px;display:grid;gap:9px}
+.rm-total{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:6px}
+.rm-total b{font-size:44px;font-weight:700;color:#0e7c66;font-variant-numeric:tabular-nums;line-height:1}
+.rm-row{display:grid;grid-template-columns:26px 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid #e3e6eb;border-radius:12px;padding:12px 16px;font-size:15px}
+.rm-check{width:22px;height:22px;border-radius:6px;border:2px solid #c9ced6;display:grid;place-items:center}
+.rm-check.on{background:#0e7c66;border-color:#0e7c66}
+.rm-check svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.rm-row .s{font-weight:700;font-variant-numeric:tabular-nums}
+.rm-row small{display:block;color:#5e6672;font-size:12.5px}
+/* S5 move */
+.rm-move{position:relative;width:770px;height:330px}
+.rm-drivecol{position:absolute;top:30px;width:300px;height:280px;border:2px dashed #d3d8de;border-radius:16px;padding:14px}
+.rm-drivecol h4{margin:0 0 10px;font-size:16px;color:#5e6672}
+.rm-folder{position:absolute;width:260px;background:#fff;border:1px solid #e3e6eb;border-radius:12px;padding:12px 14px;box-shadow:0 8px 24px rgba(16,24,40,.12);font-size:14.5px}
+.rm-folder b{display:block}
+.rm-folder small{color:#5e6672}
+.rm-link{position:absolute;height:3px;background:repeating-linear-gradient(90deg,#0e7c66 0 10px,transparent 10px 18px);border-radius:2px}
+.rm-junction{position:absolute;font-size:12.5px;font-weight:600;color:#0e7c66;background:#e3f4ee;border-radius:8px;padding:3px 10px}
+/* S6 end */
+.rm-end{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#fff}
+.rm-end .logo{width:120px;height:120px;margin:0 auto 18px}
+.rm-end h2{font-size:64px;margin:0;font-weight:700;letter-spacing:-.02em}
+.rm-end p{font-size:24px;margin:8px 0 0;color:#bfebdd}
+.rm-end .gain{display:inline-block;margin-top:22px;font-size:28px;font-weight:700;color:#0f1a17;background:#6cd3b3;border-radius:999px;padding:8px 26px}
+/* captions + controls */
+.rm-cap{position:absolute;left:0;right:0;bottom:44px;text-align:center;font-size:30px;font-weight:700;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.5);letter-spacing:-.005em}
+.rm-ctrl{position:absolute;left:14px;right:14px;bottom:8px;display:flex;gap:10px;align-items:center;opacity:0;transition:opacity .2s}
+.rm:hover .rm-ctrl,.rm.paused .rm-ctrl{opacity:1}
+.rm-ctrl button{border:0;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;cursor:pointer}
+.rm-ctrl button svg{width:16px;height:16px;fill:#0f1a17}
+.rm-prog{flex:1;height:5px;border-radius:3px;background:rgba(255,255,255,.25);overflow:hidden;cursor:pointer}
+.rm-prog i{display:block;height:100%;background:#6cd3b3}
+.rm.record .rm-ctrl{display:none}
