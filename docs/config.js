@@ -14,7 +14,7 @@ window.ROOMY_SITE = {
   paddle: {
     environment: 'sandbox',
     sandbox: { clientToken: '', prices: { monthly: 'pri_01m825frty6r16p3a9ft3gg5ex', yearly: 'pri_01m81t5874k86n5gtjtaytm45e', lifetime: 'pri_01m81t42bn28k9j7ynyb5ddfpg' } },
-    production: { clientToken: '', prices: { monthly: 'pri_01m827bwrw525vpmc1bcnccbqg', yearly: 'pri_01m827dxadty3zhcj800jje0gx', lifetime: 'pri_01m827fs5c7nfh1tyrpj0yd6ta' } },
+    production: { clientToken: 'live_31596280246135b93067315eef4', prices: { monthly: 'pri_01m827bwrw525vpmc1bcnccbqg', yearly: 'pri_01m827dxadty3zhcj800jje0gx', lifetime: 'pri_01m827fs5c7nfh1tyrpj0yd6ta' } },
   },
   // Shown on the cards. Paddle charges in the buyer's currency (Thailand = THB price set in Paddle).
   // ~฿34.6 per US$: monthly ฿104 = $2.99, annual ฿519 = $14.99 (save 58% vs monthly), lifetime ฿699 = $19.99
