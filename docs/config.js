@@ -5,9 +5,9 @@ window.ROOMY_SITE = {
   downloadUrl: 'https://github.com/pithiwat/roomy/releases/latest',
   // Cloudflare Worker that sells Pro (worker/). Empty = buy buttons show "coming soon".
   // After `npx wrangler deploy` put the URL here, e.g. 'https://roomy-shop.<your-subdomain>.workers.dev'
-  shopUrl: '',
+  shopUrl: 'https://roomy-shop.pithiwat.workers.dev',
   // Which checkout the buy buttons use: 'stripe' (Worker /buy, card + PromptPay) or 'paddle' (Paddle.js overlay on this page)
-  payment: 'stripe',
+  payment: 'paddle',
   paddle: { environment: 'sandbox', clientToken: '', prices: { lifetime: '', yearly: '' } },
   prices: {
     th: { free: '฿0', lifetime: '฿590', yearly: '฿290', yearlyNote: '/ปี' },

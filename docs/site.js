@@ -4,6 +4,10 @@
 (() => {
   const C = window.ROOMY_SITE;
   const TH_TEXT = {
+    "foot.terms": "ข้อกำหนด",
+    "foot.privacy": "ความเป็นส่วนตัว",
+    "foot.refund": "การคืนเงิน",
+    "foot.contact": "ติดต่อ",
     "nav.features": "ฟีเจอร์",
     "nav.pricing": "ราคา",
     "nav.faq": "คำถาม",
