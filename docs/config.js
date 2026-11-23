@@ -6,8 +6,11 @@ window.ROOMY_SITE = {
   // Cloudflare Worker that sells Pro (worker/). Empty = buy buttons show "coming soon".
   // After `npx wrangler deploy` put the URL here, e.g. 'https://roomy-shop.<your-subdomain>.workers.dev'
   shopUrl: 'https://roomy-shop.pithiwat.workers.dev',
-  // Which checkout the buy buttons use: 'stripe' (Worker /buy, card + PromptPay) or 'paddle' (Paddle.js overlay on this page)
-  payment: 'paddle',
+  // Which checkout the buy buttons use: 'store' (Microsoft Store: Pro is bought inside Roomy from the Store), 'stripe' (Worker /buy)
+  // or 'paddle' (Paddle.js overlay; Paddle declined this product category, kept only for reference)
+  payment: 'store',
+  // Roomy in the Microsoft Store (Partner Center > Product identity > Store ID, e.g. 9NXXXXXXXXXX). Empty = buy buttons say "Coming soon".
+  storeId: '',
   // Paddle (Catalog > Products > Roomy Pro). Monthly and annual renew automatically; lifetime is one payment.
   // `environment` picks which set is used. Switch to 'production' once the live client-side token is filled in
   // (Developer tools > Authentication > Client-side tokens) and the Worker has PADDLE_ENV = "production".

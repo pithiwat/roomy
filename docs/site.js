@@ -37,7 +37,7 @@
     "p.lnote": "ไม่ต้องสมัครสมาชิก",
     "p.f0": "หน้าหลัก ตรวจสุขภาพเครื่อง โหมดเกม",
     "q7": "ยกเลิกรายเดือนหรือรายปีได้ไหม",
-    "a7": "ได้ทุกเมื่อ จากลิงก์ในอีเมลใบเสร็จ Pro ใช้ได้จนครบรอบที่จ่ายไว้ แล้ว Roomy จะกลับเป็นเวอร์ชันฟรี ไม่มีอะไรเสีย โฟลเดอร์ที่ย้ายไว้ยังใช้งานได้",
+    "a7": "ได้ทุกเมื่อในบัญชี Microsoft (account.microsoft.com/services) Pro ใช้ได้จนครบรอบที่จ่ายไว้ แล้ว Roomy จะกลับเป็นเวอร์ชันฟรี ไม่มีอะไรเสีย โฟลเดอร์ที่ย้ายไว้ยังใช้งานได้",
     "q8": "คืนหน่วยความจำหรือพักโปรแกรม จะทำให้อะไรเสียไหม",
     "a8": "ไม่ การคืนหน่วยความจำไม่ได้ปิดแอปใด ๆ Windows จะคืนให้แต่ละแอปเท่าที่ต้องใช้ ส่วนการพักแค่ไม่ให้โปรแกรมเปิดเองเท่านั้น ไม่ได้ถอนการติดตั้ง และปลุกกลับได้ทุกเมื่อ",
     "cta.pricing": "ดูราคา Pro",
@@ -95,11 +95,11 @@
     "q2": "ทดลองครบ 7 วันแล้วเกิดอะไรขึ้น",
     "a2": "Roomy กลับเป็นเวอร์ชันฟรีเอง ไม่มีการตัดเงิน และไม่ต้องใส่บัตรตั้งแต่แรก โฟลเดอร์ที่ย้ายไปแล้วยังใช้งานได้ และย้ายกลับได้เสมอ",
     "q3": "ซื้อแล้วใช้งานอย่างไร",
-    "a3": "หลังชำระเงิน คุณจะได้ license key ทันทีบนหน้าจอ เปิด Roomy กดปุ่ม Pro ที่มุมซ้ายล่าง แล้ววาง key จบ",
+    "a3": "ติดตั้ง Roomy จาก Microsoft Store เปิดหน้า Pro (มุมซ้ายล่าง) แล้วเลือกแผน ชำระเงินในหน้าต่างของ Microsoft Store แล้ว Pro เปิดใช้ได้ทันที",
     "q4": "เปลี่ยนเครื่องใหม่ได้ไหม",
-    "a4": "ได้ ถอด license ออกจากเครื่องเก่าในหน้า Pro แล้วใส่ key เดิมในเครื่องใหม่",
+    "a4": "ได้ ติดตั้ง Roomy จาก Microsoft Store ในเครื่องใหม่ แล้วลงชื่อเข้า Store ด้วยบัญชี Microsoft เดิม Pro จะตามไปด้วย",
     "q5": "Windows ขึ้นเตือน \"Windows protected your PC\"",
-    "a5": "Roomy ยังเป็นโปรแกรมใหม่ Windows SmartScreen จึงอาจเตือน ให้กด More info แล้ว Run anyway ตัวติดตั้งดาวน์โหลดจากหน้า GitHub ของ Roomy โดยตรง",
+    "a5": "คำเตือนนี้ขึ้นเฉพาะตัวติดตั้งจากเว็บไซต์นี้ เพราะ Roomy ยังใหม่ ให้กด More info แล้ว Run anyway หรือติดตั้ง Roomy จาก Microsoft Store ซึ่ง Microsoft รับรองไฟล์ให้ จะไม่มีคำเตือนเลย",
     "q6": "ต้องใช้ Windows รุ่นไหน",
     "a6": "Windows 10 และ 11 แบบ 64 บิต ติดตั้งได้ทั้งสำหรับตัวเองหรือทุกคนในเครื่อง",
     "final.title": "ให้ไดรฟ์ของคุณกลับมามีที่ว่าง",
@@ -108,8 +108,8 @@
   };
   // strings used only by this script (not in the HTML)
   const EXTRA = {
-    en: { 'cta.soon': 'Coming soon', 'price.pay': 'Pay by card or PromptPay · Your key appears right after payment', 'price.payPaddle': 'Pay by card or PayPal, taxes included · Your key appears right after payment' },
-    th: { 'cta.soon': 'เร็ว ๆ นี้', 'price.pay': 'ชำระด้วยบัตรหรือ PromptPay · ได้ key ทันทีหลังชำระเงิน', 'price.payPaddle': 'ชำระด้วยบัตรหรือ PayPal รวมภาษีแล้ว · ได้ key ทันทีหลังชำระเงิน' },
+    en: { 'cta.store': 'Get it on Microsoft Store', 'price.payStore': 'Sold through the Microsoft Store in your currency, taxes included · Pro turns on in the app right away', 'cta.soon': 'Coming soon', 'price.pay': 'Pay by card or PromptPay · Your key appears right after payment', 'price.payPaddle': 'Pay by card or PayPal, taxes included · Your key appears right after payment' },
+    th: { 'cta.store': 'ซื้อใน Microsoft Store', 'price.payStore': 'ขายผ่าน Microsoft Store เป็นสกุลเงินของคุณ รวมภาษีแล้ว · Pro เปิดใช้ในโปรแกรมได้ทันที', 'cta.soon': 'เร็ว ๆ นี้', 'price.pay': 'ชำระด้วยบัตรหรือ PromptPay · ได้ key ทันทีหลังชำระเงิน', 'price.payPaddle': 'ชำระด้วยบัตรหรือ PayPal รวมภาษีแล้ว · ได้ key ทันทีหลังชำระเงิน' },
   };
   // Paddle.js checkout (only loaded when the site is set to Paddle). After payment -> the Worker's /thanks shows the key.
   let paddleLoading = null;
@@ -153,12 +153,18 @@
     // buy buttons: Stripe -> the Worker's /buy; Paddle -> Paddle.js overlay here; nothing set up -> "coming soon"
     const shop = C.shopUrl && C.shopUrl.replace(/\/$/, '');
     const paddleReady = C.payment === 'paddle' && PAD.clientToken && shop;
+    const storeUrl = C.payment === 'store' && C.storeId ? `https://apps.microsoft.com/detail/${C.storeId}` : '';
     document.querySelectorAll('.buy').forEach((b) => {
+      if (C.payment === 'store') {           // Pro is bought inside Roomy from the Microsoft Store: the buttons open the Store page
+        if (storeUrl) { b.href = storeUrl; b.target = '_blank'; b.rel = 'noopener'; b.onclick = null; b.textContent = tr('cta.store'); b.removeAttribute('aria-disabled'); }
+        else { b.removeAttribute('href'); b.onclick = null; b.textContent = tr('cta.soon'); b.setAttribute('aria-disabled', 'true'); }
+        return;
+      }
       if (paddleReady && PAD.prices[b.dataset.plan]) { b.href = '#pricing'; b.onclick = (e) => { e.preventDefault(); paddleCheckout(b.dataset.plan); }; b.textContent = text('cta.buy', b); b.removeAttribute('aria-disabled'); }
       else if (C.payment !== 'paddle' && shop) { b.href = `${shop}/buy?plan=${b.dataset.plan}&lang=${lang}`; b.onclick = null; b.textContent = text('cta.buy', b); b.removeAttribute('aria-disabled'); }
       else { b.removeAttribute('href'); b.onclick = null; b.textContent = tr('cta.soon'); b.setAttribute('aria-disabled', 'true'); }
     });
-    if (shop) { const n = document.getElementById('payNote'); n.textContent = text('price.note', n) + ' · ' + tr(C.payment === 'paddle' ? 'price.payPaddle' : 'price.pay'); }
+    { const n = document.getElementById('payNote'); n.textContent = text('price.note', n) + (C.payment === 'store' ? ' · ' + tr('price.payStore') : shop ? ' · ' + tr(C.payment === 'paddle' ? 'price.payPaddle' : 'price.pay') : ''); }
     if (motion) motion.setLang(lang);
   }
   document.querySelectorAll('.dl').forEach((a) => { a.href = C.downloadUrl; });
